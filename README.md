@@ -11,6 +11,7 @@ The pipeline ingests raw e-commerce data from AWS S3, processes it through a Med
 * **Data Governance:** Unity Catalog
 * **Analytics & Visualization:** Databricks SQL, Databricks Dashboards, Databricks Genie (AI Assistant)
 
+```mermaid
 graph TD
     %% Define Styles
     classDef aws fill:#FF9900,stroke:#232F3E,stroke-width:2px,color:black;
