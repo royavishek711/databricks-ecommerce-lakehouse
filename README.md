@@ -10,6 +10,38 @@ The pipeline ingests raw e-commerce data from AWS S3, processes it through a Med
 * **Storage Layer:** Delta Lake, AWS S3
 * **Data Governance:** Unity Catalog
 * **Analytics & Visualization:** Databricks SQL, Databricks Dashboards, Databricks Genie (AI Assistant)
+* **graph TD
+    %% Define Styles
+    classDef aws fill:#FF9900,stroke:#232F3E,stroke-width:2px,color:black;
+    classDef databricks fill:#FF3621,stroke:#242424,stroke-width:2px,color:white;
+    classDef bronze fill:#CD7F32,stroke:#5A3A18,stroke-width:2px,color:white;
+    classDef silver fill:#C0C0C0,stroke:#4B4B4B,stroke-width:2px,color:black;
+    classDef gold fill:#FFD700,stroke:#B8860B,stroke-width:2px,color:black;
+    classDef bi fill:#00A972,stroke:#004D34,stroke-width:2px,color:white;
+    classDef unity fill:#1E283C,stroke:#0F141E,stroke-width:2px,color:white;
+
+    %% Source & Storage
+    A[Raw CSV Files] -->|Ingested to| B[(AWS S3 Data Lake)]
+    B:::aws
+
+    %% Databricks Pipeline
+    subgraph "Databricks Data Lakehouse"
+        direction TB
+        
+        %% Unity Catalog Wrapper
+        subgraph "Unity Catalog (Data Governance & RBAC)"
+            direction LR
+            C[(Bronze Layer<br/>Raw Data)]:::bronze -->|Clean, Filter, Normalize<br/>PySpark| D[(Silver Layer<br/>Cleansed Data)]:::silver
+            D -->|Join, Aggregate, BI Prep<br/>PySpark| E[(Gold Layer<br/>Business-Ready)]:::gold
+        end
+        style "Unity Catalog (Data Governance & RBAC)" fill:#f4f4f9,stroke:#1E283C,stroke-width:2px,stroke-dasharray: 5 5
+    end
+
+    B --> C
+
+    %% Downstream Analytics
+    E --> F[Databricks SQL<br/>Dashboards]:::bi
+    E --> G[Databricks Genie<br/>GenAI Insights]:::bi
 
 ## ⚙️ The Medallion Pipeline
 This project logically organizes data to progressively improve structure and quality:
