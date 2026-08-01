@@ -10,7 +10,8 @@ The pipeline ingests raw e-commerce data from AWS S3, processes it through a Med
 * **Storage Layer:** Delta Lake, AWS S3
 * **Data Governance:** Unity Catalog
 * **Analytics & Visualization:** Databricks SQL, Databricks Dashboards, Databricks Genie (AI Assistant)
-* **graph TD
+
+graph TD
     %% Define Styles
     classDef aws fill:#FF9900,stroke:#232F3E,stroke-width:2px,color:black;
     classDef databricks fill:#FF3621,stroke:#242424,stroke-width:2px,color:white;
