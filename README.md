@@ -6,10 +6,6 @@ As data volumes scale, traditional Python-based ETL pipelines often face perform
 The pipeline ingests raw e-commerce data from AWS S3, processes it through a Medallion Architecture (Bronze, Silver, Gold) using PySpark, and serves highly optimized, denormalized views for downstream Business Intelligence and AI integration.
 
 ## 🏗️ Architecture & Technology Stack
-* **Compute & Processing:** Databricks, Apache Spark (PySpark)
-* **Storage Layer:** Delta Lake, AWS S3
-* **Data Governance:** Unity Catalog
-* **Analytics & Visualization:** Databricks SQL, Databricks Dashboards, Databricks Genie (AI Assistant)
 
 ```mermaid
 graph TD
@@ -44,6 +40,12 @@ graph TD
     %% Downstream Analytics
     E --> F[Databricks SQL<br/>Dashboards]:::bi
     E --> G[Databricks Genie<br/>GenAI Insights]:::bi
+```
+
+* **Compute & Processing:** Databricks, Apache Spark (PySpark)
+* **Storage Layer:** Delta Lake, AWS S3
+* **Data Governance:** Unity Catalog
+* **Analytics & Visualization:** Databricks SQL, Databricks Dashboards, Databricks Genie (AI Assistant)
 
 ## ⚙️ The Medallion Pipeline
 This project logically organizes data to progressively improve structure and quality:
