@@ -23,16 +23,16 @@ graph TD
     B:::aws
 
     %% Databricks Pipeline
-    subgraph "Databricks Data Lakehouse"
+    subgraph Lakehouse ["Databricks Data Lakehouse"]
         direction TB
         
         %% Unity Catalog Wrapper
-        subgraph "Unity Catalog (Data Governance & RBAC)"
+        subgraph UnityCatalog ["Unity Catalog (Data Governance & RBAC)"]
             direction LR
             C[(Bronze Layer<br/>Raw Data)]:::bronze -->|Clean, Filter, Normalize<br/>PySpark| D[(Silver Layer<br/>Cleansed Data)]:::silver
             D -->|Join, Aggregate, BI Prep<br/>PySpark| E[(Gold Layer<br/>Business-Ready)]:::gold
         end
-        style "Unity Catalog (Data Governance & RBAC)" fill:#f4f4f9,stroke:#1E283C,stroke-width:2px,stroke-dasharray: 5 5
+        style UnityCatalog fill:#f4f4f9,stroke:#1E283C,stroke-width:2px,stroke-dasharray: 5 5
     end
 
     B --> C
